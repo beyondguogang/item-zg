@@ -5,7 +5,8 @@
     <title>Title</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <style>
-        .title {
+        /*头部样式*/
+        .title{
             width: 100%;
             height: 50px;
             background: #1b1e21;
@@ -36,16 +37,18 @@
            opacity: .6;
         }
         .title .title-list .title-list-icon .last-li{
-
-            position: relative;
+            /*overflow: hidden;*/
+            width: 70px;
+            height: 100px;
+            /*position: relative;*/
         }
         .title .sign-in{
             display: none;
             width: 100px;
             height: 100px;
-            position: absolute;
+            position: fixed;
             top: 50px;
-            right: 10px;
+            right: 6px;
             border: 1px solid gray;
 
         }
@@ -56,6 +59,9 @@
             padding-left: 10px;
 
         }
+        .title .active {
+            display: block;
+        }
         .title .sign-in a:hover{
             opacity: .5;
         }
@@ -65,6 +71,9 @@
             background: #1d2124;
         }
         .content .list-item{
+            position:absolute;
+            top:50px;
+            bottom:0;
             float: left;
             width: 15%;
             /*height:420px;*/
@@ -76,12 +85,14 @@
         .content .project{
             list-style: none;
         }
-        .content .project li{
+        .content .project div{
+            margin: 0 auto;
+            text-align: center;
             height: 60px;
             line-height: 60px;
             width: 100%;
         }
-        .content .project li i{
+        .content .project div i{
             /*border: 5px solid black;*/
             /*width: 20px;*/
             /*height: 20px;*/
@@ -94,7 +105,7 @@
             border-color:transparent transparent transparent #4D4D4D;
             transition:all 1s ease 0.1s
         }
-        .content .project li:hover{
+        .content .project div:hover{
         background:#1c7430;
             /*transform:rotate(90deg)*/
         }
@@ -119,28 +130,47 @@
                     <img src="img/timg.jpg" alt="" style="width: 30px;height: 30px ;margin-top: 10px;margin-right: 10px;margin-top:0">
                 </a>
             </li>
-            <li class="last-li">鼠标移上</li>
+            <li class="last-li" v-on:mouseenter="fn" v-on:mouseleave="fn2" >鼠标移上
+                <div class="sign-in" v-bind:class="{active:isActive}">
+                    <a href="">登录</a>
+                    <a href="">修改密码</a>
+                </div>
+            </li>
         </ul>
 
     </div>
     <!--隐藏登录修改-->
-    <div class="sign-in">
+   <!-- <div class="sign-in" v-on:mouseleave="fn1" v-bind:class="{active:isActive}">
         <a href="">登录</a>
         <a href="">修改密码</a>
-    </div>
+    </div>-->
 </div>
 <!--内容-->
-<div class="content">
+<div class="content" >
 <!--    左边栏-->
     <div class="list-item">
         <h2 class="flag">标题</h2>
-        <ul class="project">
-            <li><i></i>配置管理</li>
-            <li><i></i>服务管理</li>
-            <li>命名空间</li>
-            <li><i></i>集群管理</li>
-        </ul>
+        <div class="project">
+            <div><i></i>配置管理
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div><i></i>服务管理
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div>命名空间</div>
+            <div><i></i>数据管理
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+<!--        <div style="position:fixed;bottom:0;background: red;"></div>-->
     </div>
+
 <!--    右边栏-->
     <div class="Details page"></div>
 </div>
@@ -151,7 +181,8 @@
 </html>
 <script src="node_modules/vue/dist/vue.js"></script>
 <script src="node_modules/jquery/dist/jquery.js"></script>
-<script>
+<script src="item.js"></script>
+<!--<script>
     let a=document.getElementsByClassName('last-li')[0];
     let b=document.getElementsByClassName('sign-in')[0];
     a.onmouseenter=function(){
@@ -160,23 +191,27 @@
     };
     b.onmouseleave=function () {
         b.style.display='none'
-    }
-  /*  console.log($('.last-li'));
-    $('.last-li').click=function () {
-         alert('zz')
-        console.log(1)
-        console.log($(".sign-in").css('color','red'));
-    }*/
-    /*let vm=new Vue({
-        el:'#app',
-        data:{
-            todos:[]
+    }-->
 
-        },
-        methods:{
-         moved:function (e) {
 
-         }
-    }
-    })*/
-</script>
+
+
+<!--  /*  console.log($('.last-li'));-->
+<!--    $('.last-li').click=function () {-->
+<!--         alert('zz')-->
+<!--        console.log(1)-->
+<!--        console.log($(".sign-in").css('color','red'));-->
+<!--    }*/-->
+<!--    /*let vm=new Vue({-->
+<!--        el:'#app',-->
+<!--        data:{-->
+<!--            todos:[]-->
+
+<!--        },-->
+<!--        methods:{-->
+<!--         moved:function (e) {-->
+
+<!--         }-->
+<!--    }-->
+<!--    })*/-->
+<!--</script>-->
